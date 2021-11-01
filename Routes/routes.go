@@ -3,7 +3,6 @@ package Routes
 import (
 	"github.com/gin-gonic/gin"
 	"likang-project/Controller"
-	_ "likang-project/Controller"
 )
 
 func Load(r *gin.Engine) {
@@ -13,6 +12,10 @@ func Load(r *gin.Engine) {
 			"message": "pong",
 		})
 	})
+
+	// 默认首页
+	r.Any("/", Controller.Index)
+	r.Any("/index", Controller.Index)
 
 	// v1版本接口
 	v1 := r.Group("/v1")
