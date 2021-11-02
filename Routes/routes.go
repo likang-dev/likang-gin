@@ -18,13 +18,16 @@ func Load(r *gin.Engine) {
 	r.Any("/index", Controller.Index)
 
 	// v1版本接口
-	v1 := r.Group("/v1")
+	r.Use(Controller.MiddleWare())
 	{
-		// 用户相关
-		user := v1.Group("/user")
+		v1 := r.Group("/v1")
 		{
-			// 登陆接口
-			user.POST("/login", Controller.Login)
+			// 用户相关
+			user := v1.Group("/user")
+			{
+				// 登陆接口
+				user.POST("/login", Controller.Login)
+			}
 		}
 	}
 
