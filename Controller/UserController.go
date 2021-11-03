@@ -16,6 +16,7 @@ func Login(context *gin.Context) {
 	context.BindJSON(&user)
 	fmt.Println(user.UserName)
 	fmt.Println(user.Password)
+	fmt.Println(context.Get("request"))
 	if user.UserName == "" {
 		ErrorResp(context, 10001, "用户名不能为空")
 		return
